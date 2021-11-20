@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User, Comment} = require('../../models');
+const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -17,10 +17,16 @@ router.get('/', (req, res) => {
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        }
+      },
+      {
+        model: User,
+        attributes: ['id', 'username', 'email']
+      }
     ]
   })
-    .then(dbPostData => res.json(dbPostData))
+    .then(dbPostData => {
+      console.log(dbPostData) 
+      res.json(dbPostData)})
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -44,6 +50,10 @@ router.get('/:id', (req, res) => {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
       },
+      {
+        model: User,
+        attributes: ['id', 'username', 'email']
+      }
     ]
   })
     .then(dbPostData => {
@@ -51,6 +61,7 @@ router.get('/:id', (req, res) => {
         res.status(404).json({ message: 'No post found with this id' });
         return;
       }
+      console.log(dbPostData)
       res.json(dbPostData);
     })
     .catch(err => {

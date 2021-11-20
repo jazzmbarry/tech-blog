@@ -21,10 +21,15 @@ router.get('/', withAuth, (req, res) => {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
       },
+      {
+        model: User,
+        attributes: ['id','username', 'email']
+      }
     ]
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
+      console.log(posts)
       res.render('dashboard', { posts, loggedIn: true });
     })
     .catch(err => {
@@ -46,6 +51,10 @@ router.get('/edit/:id', withAuth, (req, res) => {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
       },
+      {
+        model: User,
+        attributes: ['id','username', 'email']
+      }
     ]
   })
     .then(dbPostData => {

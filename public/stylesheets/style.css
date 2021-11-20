@@ -201,7 +201,7 @@ main {
 .post .title span {
   font-style: italic;
   font-size: 90%;
-  color: var(--terciary-color-var);
+  color: var(--secondary-color);
 }
 
 .edit-link {
@@ -220,7 +220,7 @@ main {
 }
 
 .comment:nth-child(odd) {
-  background-color: var(--terciary-color);
+  background-color: var(--terciary-color-var);
 }
 
 .comment .meta {
