@@ -27,6 +27,7 @@ const sess = {
   };
 // handlebars helpers
 const hbs = exphbs.create({ helpers });
+
 // initialize the server
 const app = express();
 const PORT = process.env.PORT || 3005;
