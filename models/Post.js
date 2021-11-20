@@ -2,7 +2,6 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Post extends Model {}
-// create fields/columns for Post model
 Post.init(
     {
       id: {
@@ -25,12 +24,6 @@ Post.init(
           model: 'user',
           key: 'id'
         }
-      },
-      get user_id() {
-        return this._user_id;
-      },
-      set user_id(value) {
-        this._user_id = value;
       },
       user_username: {
         type: DataTypes.STRING,
