@@ -15,18 +15,28 @@ Post.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      post_url: {
+      body: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          isURL: true
-        }
+        allowNull: true
       },
-      user_id: {
+      _user_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'user',
           key: 'id'
+        }
+      },
+      get user_id() {
+        return this._user_id;
+      },
+      set user_id(value) {
+        this._user_id = value;
+      },
+      user_username: {
+        type: DataTypes.STRING,
+        references: {
+          model: 'user',
+          key: 'username'
         }
       }
     },
