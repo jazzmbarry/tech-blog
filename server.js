@@ -38,5 +38,6 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 sequelize.sync({ force: false }).then(() => {
+  process.on("unhandledRejection", (e) => { throw e });
   app.listen(PORT, () => console.log(chalk.blue("Now listening!")));
 });
