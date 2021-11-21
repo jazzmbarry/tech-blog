@@ -14,7 +14,7 @@ const helpers = require("./utils/helpers");
 
 const sess = {
     secret: "This is a thing for the thing",
-    cookie: {},
+    cookie: {maxAge: null},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -39,4 +39,8 @@ app.set("view engine", "handlebars");
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(chalk.blue("Now listening!")));
+})
+.catch(err => {
+  console.log(err);
+  res.status(500).json(err);
 });
