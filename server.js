@@ -14,7 +14,6 @@ const helpers = require("./utils/helpers");
 
 const sess = {
     secret: "This is a thing for the thing",
-    cookie: {maxAge: null},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -38,6 +37,6 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 sequelize.sync({ force: false }).then(() => {
-  process.on("unhandledRejection", (e) => { throw e });
+ 
   app.listen(PORT, () => console.log(chalk.blue("Now listening!")));
 });
